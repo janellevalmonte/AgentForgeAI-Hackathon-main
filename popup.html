@@ -5,18 +5,19 @@
   </head>
   <body>
     <div class="container">
-      <h1>Fact Decay</h1>
+      <div class="top-row">
+        <h1>Fact Decay</h1>
+        <button id="themeToggle">Light Mode</button>
+      </div>
       <p class="subtitle">Is what you're reading still true?</p>
       
       <textarea id="claimInput" placeholder="Paste a claim or article excerpt here..."></textarea>
-      
       <button id="checkBtn">Check It</button>
       
       <div id="results" class="hidden">
         <h2>Results</h2>
         <div id="resultsList"></div>
       </div>
-
       <div id="loading" class="hidden">
         <p>Searching the web...</p>
       </div>

@@ -1,3 +1,23 @@
+// ── THEME TOGGLE (runs on load) ──
+const toggle = document.getElementById("themeToggle");
+
+chrome.storage.local.get("theme", (data) => {
+  if (data.theme === "light") {
+    document.body.classList.add("light");
+    toggle.textContent = "Dark Mode";
+  } else {
+    toggle.textContent = "Light Mode";
+  }
+});
+
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  const isLight = document.body.classList.contains("light");
+  toggle.textContent = isLight ? "Dark Mode" : "Light Mode";
+  chrome.storage.local.set({ theme: isLight ? "light" : "dark" });
+});
+
+// ── CHECK BUTTON ──
 document.getElementById("checkBtn").addEventListener("click", async () => {
   const input = document.getElementById("claimInput").value.trim();
   if (!input) return;
@@ -43,6 +63,7 @@ function displayResults(claims) {
 function verdictLabel(v) {
   if (v === "true") return "Still True";
   if (v === "outdated") return "Outdated";
-  if (v === "false") return "Content Contradicted!";
-  return "Unknown Content";
+  if (v === "false") return "Contradicted";
+  if (v === "unverifiable") return "Not Verifiable";
+  return "Unknown";
 }

@@ -6,8 +6,8 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-SENSENOVA_API_KEY = "sk-K8UazZC4hpm44BcEs0HAmUgiPKYZAg6i"
-BRIGHT_DATA_API_KEY = "e17beaf0-5eec-4461-952d-312f5a22c094"
+SENSENOVA_API_KEY = ""
+BRIGHT_DATA_API_KEY = ""
 
 def search_web(query):
     url = "https://api.brightdata.com/serp/req"
@@ -47,7 +47,9 @@ Context:
 Respond ONLY with a JSON object, no markdown, no extra text:
 {{"verdict": "true", "explanation": "one sentence explanation"}}
 
-verdict must be exactly one of: true, outdated, false
+verdict must be exactly one of: true, outdated, false, unverifiable
+
+Use "unverifiable" if the claim is too vague, nonsensical, or not fact-checkable (e.g. greetings, opinions, gibberish).
 """
     payload = {
         "model": "sensenova-6.7-flash-lite",
